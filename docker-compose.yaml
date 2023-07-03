@@ -14,7 +14,7 @@ services:
       - CARDANO_NODE_DATA_FOLDER=/data
     volumes:
       - ${PWD}/data:/data
-    restart: never
+    restart: no
   cardano-node:
     image: inputoutput/cardano-node:8.1.1
     restart: always
