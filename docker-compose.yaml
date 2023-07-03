@@ -1,0 +1,45 @@
+version: '3.9'
+
+networks:
+  default:
+    name: liqwid-bots
+
+services:
+  init-container:
+    build:
+      dockerfile: init-container/Dockerfile
+      context: .
+      no_cache: true
+    environment:
+      - CARDANO_NODE_DATA_FOLDER=/data
+    volumes:
+      - ${PWD}/data:/data
+    restart: never
+  cardano-node:
+    image: inputoutput/cardano-node:8.1.1
+    restart: always
+    environment:
+      - NETWORK=mainnet
+      - CARDANO_DATABASE_PATH=/data/db
+      - CARDANO_PORT=3001
+      - CARDANO_SOCKET_PATH=/data/db/node.socket
+    volumes:
+      - ${PWD}/data:/data
+    depends_on:
+      init-container:
+        condition: service_completed_successfully
+  ogmios:
+    image: cardanosolutions/ogmios:v5.5.6-mainnet
+    restart: always
+    environment:
+      - NODE_CONFIG_PATH=/opt/cardano/config/mainnet-config.json
+      - LISTEN_HOST=0.0.0.0
+      - LISTEN_PORT=1337
+      - NODE_SOCKET_PATH=/data/db/node.socket
+      - LOG_LEVEL=Debug
+    command: ["sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}"]
+    volumes:
+      - ${PWD}/data:/data
+    depends_on:
+      - cardano-node
+
