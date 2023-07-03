@@ -1,5 +1,14 @@
 # liqwid-finance-liquidation-bot
 
+Hey this is Giovanni, SPO of the EASY1 Stake Pool and Serial Liquidator on the Liqwid Finance platform.
+If you like what you're seeing here, please consider supporting me delegating to my Stake Pool EASY1.
+
+This project contains a bunch of docker-compose recipes that I've improved over the weeks that will allow you
+to quickly get up to speed and run your own Liquidation BOT. Depending on your technical abilities, you can run more or less
+complex setup and compete for a chance to liquidate bad loans on Liqwid Finance and earn a few bucks.
+
+Before proceeding though, **PLEASE** carefully read the disclaimer below.
+
 ### DISCLAIMER
 
 Misuse of code and examples contained in this project may lead to irrecoverable loss of funds or
