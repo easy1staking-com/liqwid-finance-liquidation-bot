@@ -44,5 +44,6 @@ services:
     volumes:
       - ${PWD}/data:/data
     depends_on:
-      - cardano-node
+      cardano-node:
+        condition: service_healthy
 
