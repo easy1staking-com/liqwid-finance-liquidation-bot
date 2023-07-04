@@ -30,7 +30,8 @@ services:
         condition: service_completed_successfully
     healthcheck:
       test: [ "CMD", "bash", "-c", "[ -S /data/db/node.socket ]" ]
-      interval: 1m
+      interval: 3m
+      retries: 60
   ogmios:
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
