@@ -28,6 +28,9 @@ services:
     depends_on:
       init-container:
         condition: service_completed_successfully
+    healthcheck:
+      test: [ "CMD", "bash", "-c", "[ -S /data/db/node.socket ]" ]
+      interval: 1m
   ogmios:
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
@@ -37,7 +40,7 @@ services:
       - LISTEN_PORT=1337
       - NODE_SOCKET_PATH=/data/db/node.socket
       - LOG_LEVEL=Debug
-    command: ["sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}"]
+    command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
     volumes:
       - ${PWD}/data:/data
     depends_on:
