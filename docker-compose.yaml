@@ -1,5 +1,8 @@
 version: '3.9'
 
+volumes:
+  node-ipc:
+
 networks:
   default:
     name: liqwid-bots
@@ -20,11 +23,9 @@ services:
     restart: always
     environment:
       - NETWORK=mainnet
-      - CARDANO_DATABASE_PATH=/data/db
-      - CARDANO_PORT=3001
-      - SOCKET_PATH=/data/db/node.socket
     volumes:
       - ${PWD}/data:/data
+      - node-ipc:/ipc
     depends_on:
       init-container:
         condition: service_completed_successfully
@@ -43,7 +44,7 @@ services:
       - LOG_LEVEL=Debug
     command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
     volumes:
-      - ${PWD}/data:/data
+      - node-ipc:/ipc
     depends_on:
       cardano-node:
         condition: service_healthy
@@ -58,7 +59,7 @@ services:
       - LOG_LEVEL=Debug
     command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
     volumes:
-      - ${PWD}/data:/data
+      - node-ipc:/ipc
     depends_on:
       cardano-node:
         condition: service_healthy
