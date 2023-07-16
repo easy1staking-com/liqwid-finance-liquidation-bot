@@ -22,7 +22,7 @@ services:
       - NETWORK=mainnet
       - CARDANO_DATABASE_PATH=/data/db
       - CARDANO_PORT=3001
-      - CARDANO_SOCKET_PATH=/data/db/node.socket
+      - SOCKET_PATH=/data/db/node.socket
     volumes:
       - ${PWD}/data:/data
     depends_on:
@@ -33,6 +33,21 @@ services:
       interval: 3m
       retries: 60
   ogmios:
+    image: cardanosolutions/ogmios:v5.5.6-mainnet
+    restart: always
+    environment:
+      - NODE_CONFIG_PATH=/opt/cardano/config/mainnet-config.json
+      - LISTEN_HOST=0.0.0.0
+      - LISTEN_PORT=1337
+      - NODE_SOCKET_PATH=/data/db/node.socket
+      - LOG_LEVEL=Debug
+    command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
+    volumes:
+      - ${PWD}/data:/data
+    depends_on:
+      cardano-node:
+        condition: service_healthy
+  kupo:
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
     environment:
