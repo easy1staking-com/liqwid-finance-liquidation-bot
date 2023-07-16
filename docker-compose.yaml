@@ -30,7 +30,7 @@ services:
       init-container:
         condition: service_completed_successfully
     healthcheck:
-      test: [ "CMD", "bash", "-c", "[ -S /data/db/node.socket ]" ]
+      test: [ "CMD", "bash", "-c", "[ -S /ipc/node.socket ]" ]
       interval: 3m
       retries: 60
   ogmios:
