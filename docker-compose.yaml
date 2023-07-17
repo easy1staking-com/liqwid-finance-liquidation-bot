@@ -36,13 +36,17 @@ services:
   ogmios:
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
-    environment:
-      - NODE_CONFIG_PATH=/config/cardano-node/config.json
-      - LISTEN_HOST=0.0.0.0
-      - LISTEN_PORT=1337
-      - NODE_SOCKET_PATH=/ipc/node.socket
-      - LOG_LEVEL=Info
-    command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
+    command:
+      - --node-socket
+      - /ipc/node.socket
+      - --host
+      - 0.0.0.0
+      - --port
+      - "1337"
+      - --log-level
+      - Info
+      - --node-config
+      - /config/cardano-node/config.json
     volumes:
       - node-ipc:/ipc
     depends_on:
