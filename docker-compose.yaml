@@ -37,30 +37,14 @@ services:
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
     environment:
-      - NODE_CONFIG_PATH=/opt/cardano/config/mainnet-config.json
+      - NODE_CONFIG_PATH=/config/cardano-node/config.json
       - LISTEN_HOST=0.0.0.0
       - LISTEN_PORT=1337
-      - NODE_SOCKET_PATH=/data/db/node.socket
-      - LOG_LEVEL=Debug
+      - NODE_SOCKET_PATH=/ipc/node.socket
+      - LOG_LEVEL=Info
     command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
     volumes:
       - node-ipc:/ipc
     depends_on:
       cardano-node:
         condition: service_healthy
-  kupo:
-    image: cardanosolutions/ogmios:v5.5.6-mainnet
-    restart: always
-    environment:
-      - NODE_CONFIG_PATH=/opt/cardano/config/mainnet-config.json
-      - LISTEN_HOST=0.0.0.0
-      - LISTEN_PORT=1337
-      - NODE_SOCKET_PATH=/data/db/node.socket
-      - LOG_LEVEL=Debug
-    command: [ "sh", "-xc", "ogmios --node-socket ${NODE_SOCKET_PATH} --host ${LISTEN_HOST} --port ${LISTEN_PORT} --log-level ${LOG_LEVEL} --node-config ${NODE_CONFIG_PATH}" ]
-    volumes:
-      - node-ipc:/ipc
-    depends_on:
-      cardano-node:
-        condition: service_healthy
-
