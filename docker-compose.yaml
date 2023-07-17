@@ -37,6 +37,8 @@ services:
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
     command:
+      - --node-config
+      - /config/cardano-node/config.json
       - --node-socket
       - /ipc/node.socket
       - --host
@@ -45,8 +47,31 @@ services:
       - "1337"
       - --log-level
       - Info
+    volumes:
+      - node-ipc:/ipc
+    depends_on:
+      cardano-node:
+        condition: service_healthy
+  kupo:
+    image: cardanosolutions/kupo:v2.4.1
+    restart: always
+    command:
       - --node-config
       - /config/cardano-node/config.json
+      - --node-socket
+      - /ipc/node.socket
+      - --host
+      - 0.0.0.0
+      - --port
+      - "1337"
+      - --in-memory
+      - --prune-utxo
+      - --since
+      - 83735993.ddeb4bf0e1daf4b510afaf479a48ae23570c10cea5f373f4077e850c0e21495d
+      - --match
+      - '*/*'
+      - --log-level
+      - Info
     volumes:
       - node-ipc:/ipc
     depends_on:
