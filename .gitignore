@@ -1,0 +1,5 @@
+.idea
+
+# Data folders
+cardano-node-data/
+kupo-data/

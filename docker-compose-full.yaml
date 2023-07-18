@@ -17,7 +17,7 @@ services:
     environment:
       - CARDANO_NODE_DATA_FOLDER=/data
     volumes:
-      - ${PWD}/data:/data
+      - ${PWD}/cardano-node-data:/data
     restart: no
   cardano-node:
     container_name: cardano-node
@@ -26,7 +26,7 @@ services:
     environment:
       - NETWORK=mainnet
     volumes:
-      - ${PWD}/data:/data
+      - ${PWD}/cardano-node-data:/data
       - node-ipc:/ipc
     depends_on:
       init-container:
@@ -76,7 +76,7 @@ services:
       - --host
       - 0.0.0.0
       - --port
-      - "1337"
+      - "1442"
       - --in-memory
       - --prune-utxo
       - --since
@@ -90,6 +90,44 @@ services:
       - node-ipc:/ipc
     depends_on:
       cardano-node:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: 10m
+        max-file: "5"
+  ada-bot:
+    container_name: ada-bot
+    image: liqwid-liquidation-bot:main
+    restart: always
+    environment:
+      - WALLET_MNEMONIC=${WALLET_MNEMONIC:-}
+      - MARKET=Ada
+      - HEARTBEAT_ADDR="127.0.0.1"
+      - HEARTBEAT_PORT="2002"
+      - VERBOSE=${VERBOSE:-false}
+      - LOGGER=${LOGGER:-NoColourLogger}
+
+      - OGMIOS_HOST=${OGMIOS_HOST:-ogmios}
+      - OGMIOS_PORT=${OGMIOS_PORT:-1337}
+      - OGMIOS_SECURE=${OGMIOS_SECURE:-false}
+      - OGMIOS_PATH=${OGMIOS_PATH:-}
+
+      - KUPO_HOST=${KUPO_HOST:-kupo}
+      - KUPO_PORT=${KUPO_PORT:-1442}
+      - KUPO_SECURE=${KUPO_SECURE:-false}
+      - KUPO_PATH=${KUPO_PATH:-}
+
+      - INTERVAL=${INTERVAL:-5}
+      - BUFFER=${BUFFER:-20000000}
+      - CHECK_PROFIT=${CHECK_PROFIT:-false}
+      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-0}
+      - ENABLE_REDEEMS=${ENABLE_REDEEMS:-true}
+      - LIQWID_CONFIG=liqwid-mainnet-config.json
+
+    depends_on:
+      kupo:
+        condition: service_healthy
+      ogmios:
         condition: service_healthy
     logging:
       options:
