@@ -97,7 +97,7 @@ services:
         max-file: "5"
   ada-bot:
     container_name: ada-bot
-    image: liqwid-liquidation-bot:main
+    image: ghcr.io/liqwid-labs/liqwid-liquidation-bot:main
     restart: always
     environment:
       - WALLET_MNEMONIC=${WALLET_MNEMONIC:-}
