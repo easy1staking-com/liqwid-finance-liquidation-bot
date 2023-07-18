@@ -9,6 +9,7 @@ networks:
 
 services:
   init-container:
+    container_name: init
     build:
       dockerfile: init-container/Dockerfile
       context: .
@@ -19,6 +20,7 @@ services:
       - ${PWD}/data:/data
     restart: no
   cardano-node:
+    container_name: cardano-node
     image: inputoutput/cardano-node:8.1.1
     restart: always
     environment:
@@ -34,6 +36,7 @@ services:
       interval: 3m
       retries: 60
   ogmios:
+    container_name: ogmios
     image: cardanosolutions/ogmios:v5.5.6-mainnet
     restart: always
     command:
@@ -54,6 +57,7 @@ services:
       cardano-node:
         condition: service_healthy
   kupo:
+    container_name: kupo
     image: cardanosolutions/kupo:v2.4.1
     restart: always
     command:
