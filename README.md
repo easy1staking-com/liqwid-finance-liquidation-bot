@@ -1,15 +1,19 @@
 # liqwid-finance-liquidation-bot
 
 Hey this is Giovanni, SPO of the EASY1 Stake Pool and Serial Liquidator on the Liqwid Finance platform.
-**If you like what you're seeing here, please consider supporting me delegating to my Stake Pool: EASY1.**
 
-You can find out more about the EASY1 Stake Pool [here](https://easy1staking.com).
+This project contains a bunch of docker-compose recipes that I'm improving over the weeks and that will allow you
+to quickly get up to speed and run your own Liquidation BOT.
 
-This project contains a bunch of docker-compose recipes that I've improved over the weeks that will allow you
-to quickly get up to speed and run your own Liquidation BOT. Depending on your technical abilities, you can run more or less
-complex setup and compete for a chance to liquidate bad loans on Liqwid Finance and earn a few bucks.
+Depending on your technical abilities, you can run more or less
+complex setup and compete for a chance to liquidate bad loans on [Liqwid Finance](https://liqwid.finance) and earn a few bucks.
 
 Before proceeding though, **PLEASE** carefully read the disclaimer below.
+
+**If you like what you're seeing here, please consider supporting me by delegating to my Stake Pool: EASY1.
+OR buy me a coffee by sending a few ada/djed to the $cryptojoe101 adahandle**
+
+You can find out more about the EASY1 Stake Pool [here](https://easy1staking.com).
 
 ### DISCLAIMER
 
@@ -18,20 +22,44 @@ leakage of private keys with subsequent loss of funds. The author assumes no res
 
 ## Official Liqwid Finance Liquidation BOT page
 
-The original github page of the Liqwid Liquidation Bot is available [here](https://github.com/Liqwid-Labs/liqwid-liquidation-bot)
+First things first. 
+
+[Liqwid Finance](https://liqwid.finance) is a decentralised lending and borrowing platform running on Cardano.
+
+The team has handed over to the community the important task to liquidate bad debts and keep the platform financially healthy.
+In order to ensure that bad loans are promptly liquidated, the team has provided the community with a BOT that peforms the liquidation and
+with incentives for community members to run the BOT.
+
+Yep you heard right. You can get paid to liquidate bad debts on the Liqwid Finance platform.
+
+The original github page and documentation of the Liqwid Liquidation Bot is available [here](https://github.com/Liqwid-Labs/liqwid-liquidation-bot)
 
 ## Before you start
 
 It is necessary to clearly state who this project is for. 
-In order to follow these tutorials and setup your own bot as well as customising these examples for your own bot, it is necessary
+
+In order to follow these tutorials, and setup your own bot as well as customising these examples for your own bot, it is necessary
 to be proficient with docker and containerised technologies. It's not the goal of this tutorial to teach docker, but rather
 provide a set of recipes to get you up and running quickly with a Liqwid Finance bot.
 
 Examples will go from a more basic configuration to a fairly complex setup where you will run your own mainnet cardano-node, ogmios, 
-in-memory kupo and all the stuff you need to run a fast, reliable BOT and keep Liqwid Finance bad-debt free. And why not, earn a 
-couple of bucks too.
+kupo and all the stuff you need to run a fast, reliable BOT and keep Liqwid Finance bad-debt free. And why not, earn a 
+few bucks too.
 
-If you're not comfortable with docker and co., close the window and go for a walk, don't come to me crying coz you lost 10k ada or 20k djed.
+If you're not comfortable with unix and or docker, close the window and go for a walk, don't come to me crying coz you lost a bunch of ada or djed.
+
+## Installing Docker
+
+The process of installing docker, closely depends on the Operative System you're using and even on linux there are several 
+different ways of installing it.
+
+As I run my BOTs on either Docker or Kubernetes, I like to use Ubuntu Linux as underlying OS for all my projects as it's very popular,
+simple to use, and there are hundreds of tutorials and articles to solve most of the issues you might encounter. 
+So, if you're starting from scratch on old hardware or renting a VPS, I would recommend ubuntu because you'll be able to follow the instructions
+contained in this project all the way from installing and configuring components to running your BOTs. 
+
+It's not the purpose of this tutorial to explain how to install and run docker, but in order to get you up to speed, you can 
+find how to install docker on ubuntu linux in this quick tutorial [Installing Docker on Ubuntu](./INSTALLING_DOCKER.md).
 
 ## Docker compose gotchas
 
@@ -41,5 +69,10 @@ Just a list of random article about docker gotchas, coz there's always something
 
 ## About the Author
 
-Hi! I am Giovanni Gargiulo and I am a Principal Software Engineer with 20 years of commercial experience. I'm a DevOps advocate and in
+Hi! I am Giovanni Gargiulo! I am a Principal Software Engineer with 20 years of commercial experience. I'm a DevOps advocate and in
 recent years I've worked on Machine Learning Projects. I'm a Cardano SPO since October 2020 and a full time Cardano dev since 2021.
+
+You can find me:
+* on twitter: https://twitter.com/CryptoJoe101
+* linkedin https://www.linkedin.com/in/giovannigargiulo/
+* discord: giovannieasy1
