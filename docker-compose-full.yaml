@@ -35,6 +35,10 @@ services:
       test: bash -c '[ -S /ipc/node.socket ]'
       interval: 3m
       retries: 60
+    logging:
+      options:
+        max-size: 10m
+        max-file: "5"
   ogmios:
     container_name: ogmios
     image: cardanosolutions/ogmios:v5.5.6-mainnet
@@ -56,6 +60,10 @@ services:
     depends_on:
       cardano-node:
         condition: service_healthy
+    logging:
+      options:
+        max-size: 10m
+        max-file: "5"
   kupo:
     container_name: kupo
     image: cardanosolutions/kupo:v2.4.1
@@ -83,3 +91,7 @@ services:
     depends_on:
       cardano-node:
         condition: service_healthy
+    logging:
+      options:
+        max-size: 10m
+        max-file: "5"
