@@ -61,6 +61,36 @@ contained in this project all the way from installing and configuring components
 It's not the purpose of this tutorial to explain how to install and run docker, but in order to get you up to speed, you can 
 find how to install docker on ubuntu linux in this quick tutorial [Installing Docker on Ubuntu](./INSTALLING_DOCKER.md).
 
+# Running Liquidation BOTS
+
+The liquidation BOT is a standalone app distributed by the Liqwid Finance team as a Docker image.
+
+You need to run as many container as the market you want to liquidate. So if for instance you have a bunch of ada and djed
+you want to use to liquidate bad loans, you need two bots running.
+
+At the time of writing, Liquidation BOTs require to talk to two service:
+* [kupo](https://cardanosolutions.github.io/kupo/)
+* [ogmios](https://ogmios.dev/)
+
+While the Liqwid Finance team makes such services available, it is recommended for you to run your own instances, as it 
+will greatly improve BOT performances and transaction building and give you a good chance be the first to liquidate a bad loan.
+While very large loans can be processed by multiple transactions issued by different BOT operators, for medium and small loans 
+it's race to the first that is able to submit a valid transaction.
+
+Ideally, you will need to run the full set of services locally so to maximise your chances to be first. List of services is:
+* Cardano Node
+* Ogmios
+* Kupo
+* Number N of Bots depending on the markets you want to cover
+
+In order to get as many people up to speed, I've prepared different charts that offer different type of complexity, so that
+also the less experienced people can give it a go.
+
+Charts and their docs, from most complex to simples:
+1. [Full stack with external node](./FULL_STACK_EXTERNAL_NODE.md)
+2. [Full stack with in memory kupo](./FULL_STACK_IN_MEMORY_KUPO.md)
+3. [Full stack](./FULL_STACK.md)
+
 ## Docker compose gotchas
 
 Just a list of random article about docker gotchas, coz there's always something to learn, and also because docker-compose sucks hard.

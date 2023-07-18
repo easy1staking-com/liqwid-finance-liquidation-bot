@@ -8,37 +8,6 @@ networks:
     name: liqwid-bots
 
 services:
-  init-container:
-    container_name: init
-    build:
-      dockerfile: init-container/Dockerfile
-      context: .
-      no_cache: true
-    environment:
-      - CARDANO_NODE_DATA_FOLDER=/data
-    volumes:
-      - ${PWD}/cardano-node-data:/data
-    restart: no
-  cardano-node:
-    container_name: cardano-node
-    image: inputoutput/cardano-node:8.1.1
-    restart: always
-    environment:
-      - NETWORK=mainnet
-    volumes:
-      - ${PWD}/cardano-node-data:/data
-      - node-ipc:/ipc
-    depends_on:
-      init-container:
-        condition: service_completed_successfully
-    healthcheck:
-      test: bash -c '[ -S /ipc/node.socket ]'
-      interval: 3m
-      retries: 60
-    logging:
-      options:
-        max-size: 10m
-        max-file: "5"
   ogmios:
     container_name: ogmios
     image: cardanosolutions/ogmios:v5.5.6-mainnet
@@ -56,7 +25,7 @@ services:
       - Info
     volumes:
       - ${PWD}/config:/node-config
-      - node-ipc:/ipc
+      - ${CARDANO_NODE_SOCKET_PATH}:/ipc
     depends_on:
       cardano-node:
         condition: service_healthy
@@ -89,7 +58,7 @@ services:
     volumes:
       - ${PWD}/kupo-data:/data
       - ${PWD}/config:/node-config
-      - node-ipc:/ipc
+      - ${CARDANO_NODE_SOCKET_PATH}:/ipc
     depends_on:
       cardano-node:
         condition: service_healthy
