@@ -1,4 +1,18 @@
-# liqwid-finance-liquidation-bot
+# Table of Contents
+
+- [Liqwid Finance BOT - Master Class](#liqwid-finance-bot-master-class)
+    + [DISCLAIMER](#disclaimer)
+    * [Official Liqwid Finance Liquidation BOT page](#official-liqwid-finance-liquidation-bot-page)
+    * [Before you start](#before-you-start)
+    * [Installing Docker](#installing-docker)
+- [Running Liquidation BOTS](#running-liquidation-bots)
+    * [BOTs' Wallets](#bots-wallets)
+        + [Wallets, tips and tricks](#wallets-tips-and-tricks)
+    * [Guide to run Liquidation BOTs](#guide-to-run-liquidation-bots)
+    * [Docker compose gotchas](#docker-compose-gotchas)
+    * [About the Author](#about-the-author)
+
+# Liqwid Finance BOT - Master Class
 
 Hey this is Giovanni, SPO of the EASY1 Stake Pool and Serial Liquidator on the Liqwid Finance platform.
 
