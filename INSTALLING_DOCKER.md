@@ -1,3 +1,9 @@
+# Index
+
+- [Installing Docker](#installing-docker)
+    * [Ubuntu](#ubuntu)
+    * [Installing docker on ubuntu](#installing-docker-on-ubuntu)
+
 # Installing Docker
 
 Docker is the container runtime that will be used in this project to manage the components required to successfully run

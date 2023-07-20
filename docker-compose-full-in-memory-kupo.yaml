@@ -100,7 +100,7 @@ services:
     image: ghcr.io/liqwid-labs/liqwid-liquidation-bot:main
     restart: always
     environment:
-      - WALLET_MNEMONIC=${WALLET_MNEMONIC:-}
+      - WALLET_MNEMONIC=${WALLET_MNEMONIC_ADA:-}
       - MARKET=Ada
       - HEARTBEAT_ADDR=127.0.0.1
       - HEARTBEAT_PORT=2002

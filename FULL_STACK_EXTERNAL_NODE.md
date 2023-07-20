@@ -1,5 +1,12 @@
 # Index
 
+- [Full Stack with external Node Setup](#full-stack-with-external-node-setup)
+    * [Hardware Requirements](#hardware-requirements)
+    * [Managing the stack](#managing-the-stack)
+        + [Fine grained configuration](#fine-grained-configuration)
+        + [Starting, stopping and upgrading your stack](#starting-stopping-and-upgrading-your-stack)
+        + [Gotchas](#gotchas)
+
 # Full Stack with external Node Setup
 
 In this tutorial we will see how to run one or more Liqwid Finance bots along with all the required services leveraging

@@ -1,5 +1,11 @@
 # Index
 
+- [Full Stack Setup](#full-stack-setup)
+    * [Hardware Requirements](#hardware-requirements)
+    * [Managing the stack](#managing-the-stack)
+        + [Fine grained configuration](#fine-grained-configuration)
+        + [Starting, stopping and upgrading your stack](#starting-stopping-and-upgrading-your-stack)
+
 # Full Stack Setup
 
 In this tutorial we will see how to run one or more Liqwid Finance bots along with all the required services. The great
