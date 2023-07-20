@@ -17,7 +17,7 @@ services:
     environment:
       - CARDANO_NODE_DATA_FOLDER=/data
     volumes:
-      - ${PWD}/cardano-node-data:/data
+      - ${CARDANO_NODE_DATA_FOLDER:-$PWD/cardano-node-data}:/data
     restart: no
   cardano-node:
     container_name: cardano-node
@@ -26,7 +26,7 @@ services:
     environment:
       - NETWORK=mainnet
     volumes:
-      - ${PWD}/cardano-node-data:/data
+      - ${CARDANO_NODE_DATA_FOLDER:-$PWD/cardano-node-data}:/data
       - node-ipc:/ipc
     depends_on:
       init-container:
@@ -87,7 +87,7 @@ services:
       - --log-level
       - Info
     volumes:
-      - ${PWD}/kupo-data:/data
+      - ${KUPO_DATA_FOLDER:-$PWD/kupo-data}:/data
       - ${PWD}/config:/node-config
       - node-ipc:/ipc
     depends_on:

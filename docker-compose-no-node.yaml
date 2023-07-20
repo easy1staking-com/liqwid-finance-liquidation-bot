@@ -56,7 +56,7 @@ services:
       - --log-level
       - Info
     volumes:
-      - ${PWD}/kupo-data:/data
+      - ${KUPO_DATA_FOLDER:-$PWD/kupo-data}:/data
       - ${PWD}/config:/node-config
       - ${CARDANO_NODE_SOCKET_PATH}:/ipc
     depends_on:
