@@ -151,6 +151,7 @@ Charts and their docs, from most complex to simples:
 1. [Full stack with external node](./FULL_STACK_EXTERNAL_NODE.md)
 2. [Full stack with in memory kupo](./FULL_STACK_IN_MEMORY_KUPO.md)
 3. [Full stack](./FULL_STACK.md)
+4. BOTs only (Work In Progress)
 
 ## Docker compose gotchas
 
