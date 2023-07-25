@@ -153,6 +153,12 @@ Charts and their docs, from most complex to simples:
 3. [Full stack](./FULL_STACK.md)
 4. BOTs only (Work In Progress)
 
+## Security: use RSA keys instead of password with SSH
+
+If you're planning to run the BOT on a Virtual Private Server (VPS) like me, you want to improve your server security
+by disabling `username` and `password` access to your server and replace it with RSA key. In this quick [SSH tutorial](./SSH.md) I explain 
+how to do so.
+
 ## Docker compose gotchas
 
 Just a list of random article about docker gotchas, coz there's always something to learn, and also because docker-compose sucks hard.
