@@ -10,13 +10,13 @@ networks:
 services:
   ogmios:
     container_name: ogmios
-    image: cardanosolutions/ogmios:v5.5.6-mainnet
+    image: cardanosolutions/ogmios@sha256:da8f612116faa67dfd26be6e50d9622c0e7c75687e1fac37dc7c99fdfa345317
     restart: always
     command:
       - --node-config
       - /node-config/mainnet/config.json
       - --node-socket
-      - /ipc/node.socket
+      - /ipc/${NODE_SOCKET_FILE:-node.socket}
       - --host
       - 0.0.0.0
       - --port
@@ -26,9 +26,6 @@ services:
     volumes:
       - ${PWD}/config:/node-config
       - ${CARDANO_NODE_SOCKET_PATH}:/ipc
-    depends_on:
-      cardano-node:
-        condition: service_healthy
     logging:
       options:
         max-size: 10m
@@ -41,7 +38,7 @@ services:
       - --node-config
       - /node-config/mainnet/config.json
       - --node-socket
-      - /ipc/node.socket
+      - /ipc/${NODE_SOCKET_FILE:-node.socket}
       - --host
       - 0.0.0.0
       - --port
@@ -59,9 +56,6 @@ services:
       - ${KUPO_DATA_FOLDER:-$PWD/kupo-data}:/data
       - ${PWD}/config:/node-config
       - ${CARDANO_NODE_SOCKET_PATH}:/ipc
-    depends_on:
-      cardano-node:
-        condition: service_healthy
     logging:
       options:
         max-size: 10m
