@@ -9,6 +9,7 @@
     * [BOTs' Wallets](#bots-wallets)
         + [Wallets, tips and tricks](#wallets-tips-and-tricks)
     * [Guide to run Liquidation BOTs](#guide-to-run-liquidation-bots)
+    * [Security: use RSA keys instead of password with SSH](#security-use-rsa-keys-instead-of-password-with-ssh)
     * [Docker compose gotchas](#docker-compose-gotchas)
     * [About the Author](#about-the-author)
 
