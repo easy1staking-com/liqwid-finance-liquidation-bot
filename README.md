@@ -160,6 +160,14 @@ If you're planning to run the BOT on a Virtual Private Server (VPS) like me, you
 by disabling `username` and `password` access to your server and replace it with RSA key. In this quick [SSH tutorial](./SSH.md) I explain 
 how to do so.
 
+## Automatically update BOT
+
+The Liqwid Finance team will release, from time to time, new versions of the liquidation BOT. This guide provides you with
+[Watchtower](https://containrrr.dev/watchtower/) and automatic way of updating the container that runs the bot.
+
+The default configuraiton will check every hour for a new version of the bot's container. If available it will pull
+down the new image, and restart the bot's container.
+
 ## Docker compose gotchas
 
 Just a list of random article about docker gotchas, coz there's always something to learn, and also because docker-compose sucks hard.

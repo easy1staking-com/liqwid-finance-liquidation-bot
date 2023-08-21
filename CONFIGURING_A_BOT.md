@@ -49,8 +49,8 @@ Let's start with a simple example where we're running any of the provided recipe
 
       - INTERVAL=${INTERVAL:-5}
       - BUFFER=${BUFFER:-20000000}
-      - CHECK_PROFIT=${CHECK_PROFIT:-false}
-      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-0}
+      - CHECK_PROFIT=${CHECK_PROFIT:-true}
+      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-5}
       - ENABLE_REDEEMS=${ENABLE_REDEEMS:-true}
       - LIQWID_CONFIG=liqwid-mainnet-config.json
 ```
@@ -113,8 +113,8 @@ any of the docker-compose files.
 
       - INTERVAL=${INTERVAL:-5}
       - BUFFER=${BUFFER:-20000000}
-      - CHECK_PROFIT=${CHECK_PROFIT:-false}
-      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-0}
+      - CHECK_PROFIT=${CHECK_PROFIT:-true}
+      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-5}
       - ENABLE_REDEEMS=${ENABLE_REDEEMS:-true}
       - LIQWID_CONFIG=liqwid-mainnet-config.json  
   djed-bot:
@@ -141,8 +141,8 @@ any of the docker-compose files.
 
       - INTERVAL=${INTERVAL:-5}
       - BUFFER=${BUFFER:-0}
-      - CHECK_PROFIT=${CHECK_PROFIT:-false}
-      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-0}
+      - CHECK_PROFIT=${CHECK_PROFIT:-true}
+      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-5}
       - ENABLE_REDEEMS=${ENABLE_REDEEMS:-true}
       - LIQWID_CONFIG=liqwid-mainnet-config.json
 ```

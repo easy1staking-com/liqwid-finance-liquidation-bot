@@ -8,6 +8,11 @@ networks:
     name: liqwid-bots
 
 services:
+  watchtower:
+    image: containrrr/watchtower
+    command: --interval 3600 --label-enable --cleanup
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   ogmios:
     container_name: ogmios
     image: cardanosolutions/ogmios:v5.5.6-mainnet
@@ -63,6 +68,8 @@ services:
   ada-bot:
     container_name: ada-bot
     image: ghcr.io/liqwid-labs/liqwid-liquidation-bot:main
+    labels:
+      - com.centurylinklabs.watchtower.enable = true
     restart: always
     environment:
       - WALLET_MNEMONIC=${WALLET_MNEMONIC_ADA:-}
@@ -84,8 +91,8 @@ services:
 
       - INTERVAL=${INTERVAL:-5}
       - BUFFER=${BUFFER:-20000000}
-      - CHECK_PROFIT=${CHECK_PROFIT:-false}
-      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-0}
+      - CHECK_PROFIT=${CHECK_PROFIT:-true}
+      - PROFIT_AMOUNT=${PROFIT_AMOUNT:-5}
       - ENABLE_REDEEMS=${ENABLE_REDEEMS:-true}
       - LIQWID_CONFIG=liqwid-mainnet-config.json
 
